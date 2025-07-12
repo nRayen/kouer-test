@@ -1,11 +1,18 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { Poppins } from 'next/font/google'
+import { Poppins, Plus_Jakarta_Sans } from 'next/font/google'
 
 const poppins = Poppins({
   subsets: ['latin'],
   weight: ['400', '500'],
   display: 'swap',
+})
+
+const PlusJakartaSans = Plus_Jakarta_Sans({
+  subsets: ['latin'],
+  weight: ['400', '500'],
+  display: 'swap',
+  variable: '--font-plus-jakarta-sans',
 })
 
 
@@ -21,8 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
-      <body className={poppins.className}>
+    <html lang="fr" className={`${PlusJakartaSans.variable}`}>
+      <body className={`${poppins.className}`}>
         {children}
       </body>
     </html>

@@ -21,6 +21,15 @@
 
 @theme {
   --color-accent: #4EA04C;
+  --color-foreground: #505050;
+  --color-muted: #AAAAAA;
+  --color-bg-secondary: #F4F4F4;
+
+  --font-jakarta: var(--font-plus-jakarta-sans);
+}
+
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
 }
 
 body {
