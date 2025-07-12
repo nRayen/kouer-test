@@ -7,15 +7,27 @@ import Link from 'next/link'
 import SelectInput from './ui/SelectInput'
 import PasswordRequirements from './PasswordRequirements'
 
+type EntrepriseType = 'Entreprise' | 'Particulier' | ''
+type LocalisationType = 'Île de France' | 'Bretagne' | 'Provence-Alpes-Côte d\'Azur' | ''
+
+type FormData = {
+  entreprise: string
+  type: EntrepriseType
+  localisation: LocalisationType
+  phone: string
+  email: string
+  password: string
+  confirmPassword: string
+}
 const SignupForm = () => {
 
-  const [entreprise, setEntreprise] = useState('')
-  const [type, setType] = useState('')
-  const [localisation, setLocalisation] = useState('')
-  const [phone, setPhone] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [confirmPassword, setConfirmPassword] = useState('')
+  const [entreprise, setEntreprise] = useState<string>('')
+  const [type, setType] = useState<EntrepriseType>('')
+  const [localisation, setLocalisation] = useState<LocalisationType>('')
+  const [phone, setPhone] = useState<string>('')
+  const [email, setEmail] = useState<string>('')
+  const [password, setPassword] = useState<string>('')
+  const [confirmPassword, setConfirmPassword] = useState<string>('')
 
   const isLongEnough = password.length >= 8
   const hasNumber = /\d/.test(password)
@@ -29,6 +41,16 @@ const SignupForm = () => {
     if (!isLongEnough || !hasNumber || !hasUppercase || !hasLowercase || !hasSpecialChar) return alert('Le mot de passe ne respecte pas les critères de sécurité')
     if (password !== confirmPassword) return alert('Les mots de passe ne correspondent pas')
     
+    const formData: FormData = {
+      entreprise,
+      type,
+      localisation,
+      phone,
+      email,
+      password,
+      confirmPassword
+    }
+    console.log(formData)
     alert('Votre compte a été créé avec succès')
   }
 
@@ -45,8 +67,8 @@ const SignupForm = () => {
             {/* Inputs */}
             <div className='flex flex-col gap-5'>
               <InputWithLabel id='entreprise' label={"Nom de l'entreprise"} type='text' value={entreprise} onChange={(e) => setEntreprise(e.target.value)} />
-              <SelectInput id='type' label={"Type d'entreprise"} options={['Entreprise', 'Particulier']} placeholder='Sélectionner un type d&apos;entreprise' value={type} onChange={(e) => setType(e.target.value)} />
-              <SelectInput id='localisation' label={"Localisation"} options={['Île de France', 'Bretagne', 'Provence-Alpes-Côte d\'Azur']} placeholder='Sélectionner une région' value={localisation} onChange={(e) => setLocalisation(e.target.value)} />
+              <SelectInput id='type' label={"Type d'entreprise"} options={['Entreprise', 'Particulier']} placeholder='Sélectionner un type d&apos;entreprise' value={type} onChange={(e) => setType(e.target.value as EntrepriseType)} />
+              <SelectInput id='localisation' label={"Localisation"} options={['Île de France', 'Bretagne', 'Provence-Alpes-Côte d\'Azur']} placeholder='Sélectionner une région' value={localisation} onChange={(e) => setLocalisation(e.target.value as LocalisationType)} />
               <InputWithLabel id='phone' label={"Numéro de téléphone"} type='tel' value={phone} onChange={(e) => setPhone(e.target.value)} />
               <InputWithLabel id='email' label={"Adresse mail"} type='email' value={email} onChange={(e) => setEmail(e.target.value)} />
 
