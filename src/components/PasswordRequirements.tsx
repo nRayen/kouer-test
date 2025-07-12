@@ -3,16 +3,14 @@ import Requirement from './ui/Requirement'
 
 type PasswordRequirementsProps = {
   password: string
+  isLongEnough: boolean
+  hasNumber: boolean
+  hasUppercase: boolean
+  hasLowercase: boolean
+  hasSpecialChar: boolean
 }
 
-const PasswordRequirements = ({ password }: PasswordRequirementsProps) => {
-
-    const isLongEnough = password.length >= 8
-    const hasNumber = /\d/.test(password)
-    const hasUppercase = /[A-Z]/.test(password)
-    const hasLowercase = /[a-z]/.test(password)
-    const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>_]/.test(password)
-
+const PasswordRequirements = ({ isLongEnough, hasNumber, hasUppercase, hasLowercase, hasSpecialChar }: PasswordRequirementsProps) => {
 
   return (
     <div className='flex flex-col gap-2.5'>

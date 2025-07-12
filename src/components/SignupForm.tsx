@@ -17,11 +17,19 @@ const SignupForm = () => {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
 
-
+  const isLongEnough = password.length >= 8
+  const hasNumber = /\d/.test(password)
+  const hasUppercase = /[A-Z]/.test(password)
+  const hasLowercase = /[a-z]/.test(password)
+  const hasSpecialChar = /[!@#$%^&*(),.?":{}|<>_]/.test(password)
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    console.log(entreprise, type, localisation, phone, email, password, confirmPassword)
+    if (!entreprise || !type || !localisation || !phone || !email) return alert('Veuillez remplir tous les champs')
+    if (!isLongEnough || !hasNumber || !hasUppercase || !hasLowercase || !hasSpecialChar) return alert('Le mot de passe ne respecte pas les critères de sécurité')
+    if (password !== confirmPassword) return alert('Les mots de passe ne correspondent pas')
+    
+    alert('Votre compte a été créé avec succès')
   }
 
   return (
@@ -45,7 +53,7 @@ const SignupForm = () => {
               <PasswordInput id='password' label='Mot de passe' value={password} onChange={(e) => setPassword(e.target.value)} />
 
               {/* Password control */}
-              <PasswordRequirements password={password} />
+              <PasswordRequirements password={password} isLongEnough={isLongEnough} hasNumber={hasNumber} hasUppercase={hasUppercase} hasLowercase={hasLowercase} hasSpecialChar={hasSpecialChar} />
 
               <PasswordInput id='confirm_password' label='Confirmer le mot de passe' value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} />
             </div>
