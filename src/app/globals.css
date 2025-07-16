@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-:root {
+/* :root {
   --background: #ffffff;
   --foreground: #171717;
 }
@@ -17,10 +17,21 @@
     --background: #0a0a0a;
     --foreground: #ededed;
   }
+} */
+
+@theme {
+  --color-accent: #4EA04C;
+  --color-foreground: #505050;
+  --color-muted: #AAAAAA;
+  --color-bg-secondary: #F4F4F4;
+
+  --font-jakarta: var(--font-plus-jakarta-sans);
+}
+
+@utility no-scrollbar {
+  @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Poppins", sans-serif;
 }
