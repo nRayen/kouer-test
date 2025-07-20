@@ -24,14 +24,27 @@
   --color-foreground: #505050;
   --color-muted: #AAAAAA;
   --color-bg-secondary: #F4F4F4;
+  --color-decoration: #E3E3E3;
+  --color-error: #F25C5C;
 
   --font-jakarta: var(--font-plus-jakarta-sans);
+
+  --breakpoint-xs: 30rem; /* 480px */
+  --breakpoint-sm: 37.5rem; /* 600px */
+  --breakpoint-md: 56.25rem; /* 900px */
+  --breakpoint-lg: 68.75rem; /* 1100px */
+  --breakpoint-xl: 90rem; /* 1440px */
 }
 
 @utility no-scrollbar {
   @apply [scrollbar-width:none] [&::-webkit-scrollbar]:hidden;
 }
 
+@utility no-calendar-picker {
+  @apply [&::-webkit-calendar-picker-indicator]:hidden [&::-webkit-inner-spin-button]:hidden;
+}
+
 body {
   font-family: "Poppins", sans-serif;
+  border: none;
 }
